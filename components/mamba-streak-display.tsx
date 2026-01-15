@@ -13,26 +13,34 @@ export function MambaStreakDisplay({ dailyProgress, dailyGoal = 20 }: MambaStrea
   const progressPercent = (dailyProgress / dailyGoal) * 100
 
   return (
-    <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-accent/5">
-      <CardContent className="pt-6">
-        <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center gap-2">
-            <Target className="h-5 w-5 text-primary" />
-            <h3 className="font-semibold text-foreground">Mamba Streak</h3>
+    <Card className="border border-border/40 bg-gradient-to-br from-card to-card/50 shadow-lg hover:shadow-xl transition-shadow">
+      <CardContent className="pt-8">
+        <div className="flex items-start justify-between mb-6">
+          <div className="flex items-start gap-3">
+            <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/20 mt-0.5">
+              <Target className="h-5 w-5 text-primary" />
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground text-lg">Mamba Streak</h3>
+              <p className="text-xs text-muted-foreground mt-0.5">Daily Progress</p>
+            </div>
           </div>
-          <div className="flex items-center gap-1 text-sm">
-            <TrendingUp className="h-4 w-4 text-accent" />
-            <span className="font-bold text-foreground">
-              {dailyProgress}/{dailyGoal}
-            </span>
-            <span className="text-muted-foreground">today</span>
+          <div className="text-right">
+            <div className="flex items-baseline justify-end gap-1">
+              <span className="font-bold text-2xl text-primary">{dailyProgress}</span>
+              <span className="text-muted-foreground">/ {dailyGoal}</span>
+            </div>
+            <div className="flex items-center justify-end gap-1 mt-1">
+              <TrendingUp className="h-3.5 w-3.5 text-accent" />
+              <span className="text-xs text-muted-foreground">today</span>
+            </div>
           </div>
         </div>
-        <Progress value={progressPercent} className="h-2" />
-        <p className="text-xs text-muted-foreground mt-2">
+        <Progress value={progressPercent} className="h-2.5 mb-4" />
+        <p className="text-xs text-muted-foreground leading-relaxed">
           {dailyGoal - dailyProgress > 0
-            ? `${dailyGoal - dailyProgress} questions to reach your daily goal`
-            : "Daily goal completed!"}
+            ? `${dailyGoal - dailyProgress} questions remaining to complete your daily goal`
+            : "✓ Daily goal completed! Keep going tomorrow."}
         </p>
       </CardContent>
     </Card>

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { BookOpen } from "lucide-react"
+import { BookOpen, Sparkles } from "lucide-react"
 import { MambaStreakDisplay } from "@/components/mamba-streak-display"
 import { ReserveCounter } from "@/components/reserve-counter"
 import { ModeSelector } from "@/components/mode-selector"
@@ -28,38 +28,44 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="container max-w-5xl mx-auto px-4 py-8">
-        {/* Header */}
-        <header className="mb-8">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary text-primary-foreground">
+      <header className="border-b border-border/40 backdrop-blur-sm">
+        <div className="container max-w-5xl mx-auto px-4 py-6">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary text-primary-foreground shadow-lg">
               <BookOpen className="h-6 w-6" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-foreground text-balance">CodexZ</h1>
-              <p className="text-muted-foreground">Medical Question Bank</p>
+              <h1 className="text-3xl font-bold text-foreground">CodexZ</h1>
+              <p className="text-sm text-muted-foreground">Medical Knowledge Platform</p>
             </div>
           </div>
-        </header>
+        </div>
+      </header>
 
+      <div className="container max-w-5xl mx-auto px-4 py-8">
         {/* Stats Section */}
-        <div className="grid md:grid-cols-2 gap-4 mb-8">
+        <div className="grid md:grid-cols-2 gap-6 mb-10">
           <MambaStreakDisplay dailyProgress={dailyProgress} />
           <ReserveCounter reserveCount={reserveCount} />
         </div>
 
-        {/* Mode Selection */}
-        <div className="mb-8">
-          <h2 className="text-xl font-semibold text-foreground mb-4">Start a New Drill</h2>
+        <div className="mb-10">
+          <div className="flex items-center gap-2 mb-6">
+            <Sparkles className="h-5 w-5 text-primary" />
+            <h2 className="text-2xl font-semibold text-foreground">Select Your Drill</h2>
+          </div>
           <ModeSelector onSelectMode={handleStartDrill} />
         </div>
 
-        {/* Additional Info */}
-        <div className="mt-8 p-4 bg-muted/50 rounded-lg border border-border">
-          <h3 className="font-semibold text-foreground mb-2">About Mamba Flow</h3>
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            Each drill consists of 10 questions. In Practice Mode, you'll provide quality ratings for each question to
-            help improve the question bank. Complete 20 questions daily to maintain your streak and maximize learning.
+        <div className="mt-12 p-6 bg-card/50 rounded-xl border border-border/40 backdrop-blur-sm">
+          <div className="flex items-start gap-3 mb-3">
+            <div className="w-1 h-6 bg-primary rounded-full flex-shrink-0 mt-1" />
+            <h3 className="font-semibold text-foreground text-lg">How It Works</h3>
+          </div>
+          <p className="text-muted-foreground leading-relaxed max-w-2xl">
+            Each drill contains 10 curated medical questions. In Practice Mode, you'll receive immediate feedback and
+            can rate question quality. In Exam Mode, test yourself under realistic conditions. Complete 20 questions
+            daily to maintain your streak and accelerate your learning journey.
           </p>
         </div>
       </div>
